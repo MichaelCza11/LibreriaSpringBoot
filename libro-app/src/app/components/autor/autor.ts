@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
   selector: 'app-autor',
   standalone: false,
   templateUrl: './autor.html',
-  styleUrl: './autor.css'
+  styleUrls: ['./autor.css']
 })
 export class AutorComponent implements OnInit {
   Autor: Autor[] = [];
@@ -23,7 +23,7 @@ export class AutorComponent implements OnInit {
   dataSource!: MatTableDataSource<Autor>;
   mostrarColumnas: string[] = ['idAutor', 'nombre', 'apellido', 'pais', 'direccion', 'telefono', 'correo', 'acciones'];
 
-  @ViewChild('fomularioAutor') formularioAutor!: ElementRef;
+  @ViewChild('formularioAutor') formularioAutor!: ElementRef;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -99,14 +99,17 @@ export class AutorComponent implements OnInit {
     form.resetForm();
   }
 
-  guardar(form:NgForm): void {
-    if (this.editar && this.idEditar !== null) {
+  guardarAutor(form:NgForm): void {
+    if(this.editar && this.idEditar !== null){
       this.update();
+      form.resetForm();
+    }else{
+      this.save();
       form.resetForm();
     }
   }
 
-  filtroAutor(event: Event){
+  buscarAutor(event: Event){
     const filtro = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filtro.trim().toLowerCase();
   }

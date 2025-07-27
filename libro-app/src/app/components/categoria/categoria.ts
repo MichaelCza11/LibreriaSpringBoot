@@ -33,19 +33,22 @@ export class CategoriaComponent implements OnInit {
     this.findAll();
   }
 
-  findAll(): void {
+  findAll(): void{
     this.categoriaService.findAll().subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+     //this.clientes = data;
+     this.dataSource = new MatTableDataSource(data);
+     this.dataSource.paginator = this.paginator;
+     this.dataSource.sort = this.sort;
+     });
   }
+ 
   save(): void {
-    this.categoriaService.save(this.categoria).subscribe(() => {
+    this.categoriaService.save(this.categoria).subscribe(() =>{
       this.categoria = {} as Categoria;
       this.findAll();
-    });
+     });
   }
+
   update(): void {
     if (this.idEditar !== null) {
       this.categoriaService.update(this.idEditar, this.categoria).subscribe(() => {
@@ -57,40 +60,41 @@ export class CategoriaComponent implements OnInit {
     }
   }
 
-  delete():void{
+  delete():void {
   Swal.fire({
     title: 'Desea eliminar el dato?',
-    text: 'esta opcion no se puede deshacer',
+    text: 'Esta accion no se puede deshacer',
     icon: 'warning',
     showCancelButton: true,
     confirmButtonText:'Si, eliminar',
     cancelButtonText: 'Cancelar',
     confirmButtonColor: '#d33',
     cancelButtonColor: '#3085d6'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.categoriaService.delete(this.idEditar!).subscribe(() => {
-          this.findAll();
-          this.categoria = {} as Categoria;
-          Swal.fire('Eliminado!', 'El registro ha sido eliminado.', 'success');
-        });
-      }else{
-        this.categoria = {} as Categoria;
-      }
-    });
-  }
+  }).then((result) =>{
+    if (result.isConfirmed) {
+      this.categoriaService.delete(this.categoria.idCategoria).subscribe(() =>{ 
+        this.findAll();
+        this.categoria = { } as Categoria;
+        Swal.fire('Eliminado','La categoria ha sido eliminado','success')
+      });
+    }else {
+      this.categoria = { } as Categoria;
+    }
+  });
+}
 
+  //metodos para interacion en la pag web
   editarCategoria(categoria: Categoria): void {
-    this.categoria = { ...categoria };
-    this.editar = true;
+    this.categoria ={...categoria};
     this.idEditar = categoria.idCategoria;
+    this.editar = true;
 
     setTimeout(() => {
-      this.formularioCategoria.nativeElement.scrollIntoView({ behavior: 'smooth' });
-    },100);
-  }
-
-  editarCateforiaCancelar(form:NgForm): void {
+      this.formularioCategoria.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  },100); // Ajusta el tiempo según sea necesario
+} 
+ 
+  editarCategoriaCancelar(form:NgForm): void {
     this.categoria = {} as Categoria;
     this.idEditar = null;
     this.editar = false;
@@ -98,13 +102,16 @@ export class CategoriaComponent implements OnInit {
   }
 
   guardarCategoria(form: NgForm): void {
-    if(this.editar && this.idEditar !== null) {
+    if(this.editar && this.idEditar !== null){
       this.update();
+      form.resetForm();
+    }else{
+      this.save();
       form.resetForm();
     }
   }
 
-  filtroCategoria(event: Event){
+  buscarCategoria(event: Event){
     const filtro = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filtro.trim().toLowerCase();
   }
