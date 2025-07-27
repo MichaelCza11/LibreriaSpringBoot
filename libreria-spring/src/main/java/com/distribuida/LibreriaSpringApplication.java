@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 //opcional
-@EntityScan(basePackages = "com.distribuida.model")
+/*@EntityScan(basePackages = "com.distribuida.model")
 @EnableJpaRepositories(basePackages = "com.distribuida.dao")
-@ComponentScan(basePackages = "com.distribuida")
+@ComponentScan(basePackages = "com.distribuida")*/
 public class LibreriaSpringApplication {
 
 	public static void main(String[] args) {

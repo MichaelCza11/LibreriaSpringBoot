@@ -1,6 +1,8 @@
 package com.distribuida.controller;
 
+import com.distribuida.model.Factura;
 import com.distribuida.model.FacturaDetalle;
+import com.distribuida.model.Libro;
 import com.distribuida.service.FacturaDetalleService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -32,7 +34,7 @@ public class FacturaDetalleControllerTestIntegracion {
 
     @Test
     public void testFinAll() throws Exception {
-        FacturaDetalle facturaDetalle = new FacturaDetalle(1, 15, 15.11F);
+        FacturaDetalle facturaDetalle = new FacturaDetalle(1, 15, 15.11F,new Factura(),new Libro());
         Mockito.when(facturaDetalleService.findAll()).thenReturn(List.of(facturaDetalle));
 
         mockMvc.perform(get("/FacturaDetalles"))
@@ -44,7 +46,7 @@ public class FacturaDetalleControllerTestIntegracion {
 
     @Test
     public void testsave() throws Exception {
-        FacturaDetalle facturaDetalle = new FacturaDetalle(0, 15, 15.11F);
+        FacturaDetalle facturaDetalle = new FacturaDetalle(0, 15, 15.11F,new Factura(),new Libro());
 
         Mockito.when(facturaDetalleService.save(any(FacturaDetalle.class))).thenReturn(facturaDetalle);
 

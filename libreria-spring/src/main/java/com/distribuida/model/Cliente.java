@@ -30,8 +30,9 @@ public class Cliente {
     }
 
     //constructor con parametros
-    public Cliente(int inCliente, String cedula, String nombre, String apellido, String direccion, String telefono, String correo) {
-        this.idCliente = inCliente;
+
+    public Cliente(int idCliente, String cedula, String nombre, String apellido, String direccion, String telefono, String correo) {
+        this.idCliente = idCliente;
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -41,12 +42,13 @@ public class Cliente {
     }
 
     //Metodos getter and setter
-    public int getInCliente() {
+
+    public int getIdCliente() {
         return idCliente;
     }
 
-    public void setInCliente(int inCliente) {
-        this.idCliente = inCliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getCedula() {
@@ -57,14 +59,6 @@ public class Cliente {
         this.cedula = cedula;
     }
 
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -73,12 +67,12 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getDireccion() {
@@ -89,6 +83,14 @@ public class Cliente {
         this.direccion = direccion;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getCorreo() {
         return correo;
     }
@@ -97,17 +99,19 @@ public class Cliente {
         this.correo = correo;
     }
 
-//Metodo to string Sirve para imprimir por consola en vez de sout
+    //Metodo to string Sirve para imprimir por consola en vez de sout
+
     @Override
     public String toString() {
         return "Cliente{" +
-                "inCliente=" + idCliente +
+                "idCliente=" + idCliente +
                 ", cedula='" + cedula + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", correo='" + correo + '\'' +
-                '}';}
+                '}';
     }
+}
 
