@@ -8,7 +8,7 @@ import { Categoria } from '../model/categoria.model';
 })
 export class CategoriaService {
 
-  private baseUrl = 'http://localhost:8080/api/categoria'; // URL to web API
+  private baseUrl = 'http://localhost:8080/api/Categorias'; // URL to web API
 
   // Inyección de dependencias
   constructor(private http: HttpClient) { }
