@@ -7,7 +7,7 @@ import { Libro } from '../model/libro.model';
   providedIn: 'root'
 })
 export class LibroService {
-    private baseUrl = 'http://localhost:8080/libros'; // Web API
+    private baseUrl = 'http://localhost:8080/Libros'; // Web API
     
 
   //inyeccion de dependencias

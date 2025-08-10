@@ -12,7 +12,7 @@ export class AutorService {
 
   constructor(private http: HttpClient) { }
   
-  findall(): Observable<Autor[]> {
+  findAll(): Observable<Autor[]> {
     return this.http.get<Autor[]>(this.baseUrl);
   }
 
@@ -28,8 +28,7 @@ export class AutorService {
     return this.http.put<Autor>(`${this.baseUrl}/${id}`, autor);
   }
 
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  delete(id:number): Observable<void> {
+  return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
-
 }

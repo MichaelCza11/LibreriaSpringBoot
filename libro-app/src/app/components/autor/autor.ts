@@ -15,7 +15,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./autor.css']
 })
 export class AutorComponent implements OnInit {
-  Autor: Autor[] = [];
+  autores: Autor[] = [];
   autor: Autor = {} as Autor;
   editar: boolean = false;
   idEditar: number | null = null;
@@ -34,7 +34,7 @@ export class AutorComponent implements OnInit {
   }
 
   findAll(): void {
-    this.autorService.findall().subscribe(data => {
+    this.autorService.findAll().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -59,7 +59,7 @@ export class AutorComponent implements OnInit {
     }
   }
 
-  delete(id: number): void {
+  delete(): void {
     Swal.fire({
     title: 'Desea eliminar el dato?',
     text: 'esta opcion no se puede deshacer',
@@ -73,6 +73,7 @@ export class AutorComponent implements OnInit {
       if (result.isConfirmed) {
         this.autorService.delete(this.autor.idAutor).subscribe(() => {
           this.findAll();
+          this.autor = {} as Autor;
           Swal.fire('Eliminado', 'El autor ha sido eliminado', 'success');
         });
       } else {

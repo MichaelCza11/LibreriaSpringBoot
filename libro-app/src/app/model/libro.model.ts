@@ -4,7 +4,7 @@ import { Categoria } from "./categoria.model"
 export interface Libro{
     idLibro: number
     titulo: string
-    editarial: string
+    editorial: string
     numPaginas: string
     edicion: string
     idioma: string

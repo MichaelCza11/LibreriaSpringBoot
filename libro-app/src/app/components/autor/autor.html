@@ -103,7 +103,8 @@
             <button class="btn btn-warning btn-sm me-1" (click)="editarAutor(c)">
               <mat-icon class="me-1">edit</mat-icon>
             </button>
-            <button class="btn btn-danger btn-sm" (click)="delete(c)">
+            <button class="btn btn-danger btn-sm" (click)="autor = c;
+            delete()">
               <mat-icon class="me-1">delete</mat-icon>
             </button>
           </div>
